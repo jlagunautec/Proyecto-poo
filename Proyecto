@@ -1,6 +1,12 @@
 #include <iostream>
+#include <fstream>
 using namespace std;
-
 int main(){
-  
+    ofstream archivo;
+    archivo.open("texto.txt");
+    archivo<<"la 7ima xd"<<endl;
+    archivo<<"la segunda"<<endl;
+    archivo<<"la tercera es la vencida"<<endl;
+    archivo.close();
+    return 0;
 }
