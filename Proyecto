@@ -13,23 +13,21 @@ int main(){
     archivo<<B<<endl;
     archivo<<C<<endl;
     archivo.close();
+    
     cout<<"1-leer archivo"<<"\n";
     cout<<"2-guardar cambios"<<"\n";
     cout<<"3-justificar"<<"\n";
     cout<<"4-justificar a izquierda"<<"\n";
     cout<<"5-justificar a la derecha"<<"\n";
-    cout<<"ingrese una opcion: "
+    cout<<"6-salir"<<"\n";
+    while (opcion!=6){
+    cout<<"ingrese una opcion: ";
     cin>>opcion;
     if(opcion==1){
-    
-    
-    
+    cout<<"El archivo ya esta abierto\n";
     }
     if(opcion==2){
-    
-    
-    
-    
+    archivo.open("texto.txt",ios::in);
     }
     if(opcion==3){
     
@@ -37,7 +35,7 @@ int main(){
     
     
     }
-    if(opcion=4){
+    if(opcion==4){
     
     
     
@@ -47,5 +45,6 @@ int main(){
     
     
     }
+   }
     return 0;
 }
