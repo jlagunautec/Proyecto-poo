@@ -4,14 +4,14 @@
 using namespace std;
 int main(){
     int opcion=0;
-    string A;
-    string B;
-    string C;
+    string A="La number juan xdxdxd";
+    string B="La segunda";
+    string C="La tercera es la bencida";
     ofstream archivo;
     archivo.open("texto.txt");
-    archivo<<"la 7ima xd"<<endl;
-    archivo<<"la segunda"<<endl;
-    archivo<<"la tercera es la vencida"<<endl;
+    archivo<<A<<endl;
+    archivo<<B<<endl;
+    archivo<<C<<endl;
     archivo.close();
     cout<<"1-leer archivo"<<"\n";
     cout<<"2-guardar cambios"<<"\n";
