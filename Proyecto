@@ -1,8 +1,12 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 using namespace std;
 int main(){
     int opcion=0;
+    string A;
+    string B;
+    string C;
     ofstream archivo;
     archivo.open("texto.txt");
     archivo<<"la 7ima xd"<<endl;
