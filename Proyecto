@@ -2,11 +2,46 @@
 #include <fstream>
 using namespace std;
 int main(){
+    int opcion=0;
     ofstream archivo;
     archivo.open("texto.txt");
     archivo<<"la 7ima xd"<<endl;
     archivo<<"la segunda"<<endl;
     archivo<<"la tercera es la vencida"<<endl;
     archivo.close();
+    cout<<"1-leer archivo"<<"\n";
+    cout<<"2-guardar cambios"<<"\n";
+    cout<<"3-justificar"<<"\n";
+    cout<<"4-justificar a izquierda"<<"\n";
+    cout<<"5-justificar a la derecha"<<"\n";
+    cout<<"ingrese una opcion: "
+    cin>>opcion;
+    if(opcion==1){
+    
+    
+    
+    }
+    if(opcion==2){
+    
+    
+    
+    
+    }
+    if(opcion==3){
+    
+    
+    
+    
+    }
+    if(opcion=4){
+    
+    
+    
+    
+    }
+    if(opcion==5){
+    
+    
+    }
     return 0;
 }
