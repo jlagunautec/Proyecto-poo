@@ -35,24 +35,17 @@ int main(){
     }
     if(opcion==3){
     
-    
-    
-    
     }
     if(opcion==4){
-    
-    
-    
-    
+     
     }
     if(opcion==5){
-    
-    
+  
     }
     if(opcion==6){
     string pal;
     cout<<"Ingrese la palabra a buscar: "; cin>>pal;
-    
-   }
-    return 0;
+    }
+  }
+  return 0;
 }
