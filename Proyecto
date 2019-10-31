@@ -19,6 +19,7 @@ int main(){
     cout<<"3-justificar"<<"\n";
     cout<<"4-justificar a izquierda"<<"\n";
     cout<<"5-justificar a la derecha"<<"\n";
+    cout<<"6-Buscar palabra"<<"\n";
     cout<<"6-salir"<<"\n";
     while (opcion!=6){
     cout<<"ingrese una opcion: ";
