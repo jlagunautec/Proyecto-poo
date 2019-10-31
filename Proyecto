@@ -2,6 +2,9 @@
 #include <fstream>
 #include <string>
 using namespace std;
+void busc(string pal){
+
+}
 int main(){
     int opcion=0;
     string A="La number juan xdxdxd";
@@ -20,8 +23,8 @@ int main(){
     cout<<"4-justificar a izquierda"<<"\n";
     cout<<"5-justificar a la derecha"<<"\n";
     cout<<"6-Buscar palabra"<<"\n";
-    cout<<"6-salir"<<"\n";
-    while (opcion!=6){
+    cout<<"7-salir"<<"\n";
+    while (opcion!=7){
     cout<<"ingrese una opcion: ";
     cin>>opcion;
     if(opcion==1){
@@ -46,6 +49,10 @@ int main(){
     
     
     }
+    if(opcion==6){
+    string pal;
+    cout<<"Ingrese la palabra a buscar: "; cin>>pal;
+    
    }
     return 0;
 }
