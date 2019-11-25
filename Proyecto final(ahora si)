@@ -156,3 +156,62 @@ int main() {
             "11. Desencriptar el archivo\n";
     cin>>opcion;
     switch(opcion) {
+        case 3:
+            justificarTexto(archivo, tamMax);
+            break;
+        case 4:
+            izquierdaTexto(archivo, tamMax);
+            break;
+        case 5:
+            derechaTexto(archivo, tamMax);
+            break;
+        case 6:
+            centrarTexto(archivo, tamMax);
+            break;
+        case 7:
+            cin >> palabra;
+            buscarPalabra(archivo, palabra);
+            break;
+        case 8:
+            cout<<"Ingrese la palabra a reemplazar:"<<endl;
+            cin>>palabra;
+            cout<<"Ingrese su reemplazo:"<<endl;
+            cin>>palabra2;
+            reemplazarPalabra(archivo, palabra, palabra2);
+            break;
+        case 9:
+            cout<<"Ingrese la palabra:"<<endl;
+            cin>>palabra;
+            cout<<"La palabra tiene "<<contarPalabra(archivo, palabra)<<" coincidencias en el texto"<<endl;
+            break;
+        case 10:
+            encriptarTexto(archivo);
+            break;
+        case 11:
+            desencriptarTexto(archivo);
+            break;
+
+        /*case 5:
+            cin >> palabra;
+            buscarPalabra(archivo, palabra);
+            break;
+            case 6:
+                cin>>palabra;
+                reemplazarPalabra(archivo, palabra);
+                break;
+            case 7:
+                cin>>palabra;
+                contarPalabra(archivo, palabra);
+                break;
+            case 8:
+                cin>>palabra;
+                encriparTexto(archivo);
+                break;*/
+    }
+
+    mostrarTexto(archivo);
+    //diccionarioTexto(archivo);
+    //desencriptarTexto(archivo);
+    //mostrarTexto(archivo);
+}
+
