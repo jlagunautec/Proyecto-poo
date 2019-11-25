@@ -1,0 +1,22 @@
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+#include <string>
+#include <vector>
+//#include <algorithm>
+//#include <cmath>
+using namespace std;
+
+void mostrarTexto(vector<string> &texto);
+void justificarTexto(vector<string> &texto, int &limite);
+void izquierdaTexto(vector<string> &texto, int &limite);
+void derechaTexto(vector<string> &texto, int &limite);
+void centrarTexto(vector<string> &texto, int &limite);
+void buscarPalabra(vector<string> texto, string &palabra);
+int contarPalabra(vector<string> texto, string &palabra);
+int reemplazarPalabra(vector<string> &texto, string &palabra, string &reemplazo);
+void encriptarTexto(vector<string> &texto);
+void desencriptarTexto(vector<string> &texto);
+void limpiarTexto(vector<string> &texto);
+void limpiarCadena(string &cadena);
+
