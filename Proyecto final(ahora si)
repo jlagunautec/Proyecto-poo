@@ -20,3 +20,68 @@ void desencriptarTexto(vector<string> &texto);
 void limpiarTexto(vector<string> &texto);
 void limpiarCadena(string &cadena);
 
+int reemplazarPalabra(vector<string> &texto, string &palabra, string &reemplazo){
+    int valida;
+    string inicio, final;
+    for(int i = 0; i < texto.size(); i++){
+        limpiarCadena(texto[i]);
+        for(int j = 0; j <texto[i].length() - palabra.length(); j++){
+            valida = 0;
+            for(int k = 0; k < palabra.length(); k++){
+                if(toupper(palabra[k]) == toupper(texto[i][j+k]))
+                    valida++;
+                else
+                    break;
+            }
+            if(valida == palabra.length()) {
+                cout<<"Encontrado : "<<endl;
+                inicio = string(texto[i].begin(), texto[i].end() - texto[i].length() + j);
+                final = string(texto[i].begin() + j + palabra.length(), texto[i].end());
+                texto[i] = inicio + reemplazo + final;
+            }
+            //j += reemplazo.length();
+        }
+    }
+    mostrarTexto(texto);
+}
+
+
+void buscarPalabra(vector<string> texto, string &palabra){
+    int valida;
+    for(int i = 0; i < texto.size(); i++){
+        limpiarCadena(texto[i]);
+        for(int j = 0; j <texto[i].length() - palabra.length(); j++){
+            valida = 0;
+            for(int k = 0; k < palabra.length(); k++){
+                if(toupper(palabra[k]) == toupper(texto[i][j+k]))
+                    valida++;
+                else
+                    break;
+            }
+            if(valida == palabra.length())
+        }
+    }
+    mostrarTexto(texto);
+}
+
+
+int contarPalabra(vector<string> texto, string &palabra){
+    int valida, contador = 0;
+    for(int i = 0; i < texto.size(); i++){
+        limpiarCadena(texto[i]);
+        for(int j = 0; j <texto[i].length() - palabra.length(); j++){
+            valida = 0;
+            for(int k = 0; k < palabra.length(); k++){
+                if(toupper(palabra[k]) == toupper(texto[i][j+k]))
+                    valida++;
+                else
+                    break;
+            }
+            if(valida == palabra.length())
+                contador++;
+        }
+    }
+    return contador;
+}
+
+
