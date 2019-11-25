@@ -85,3 +85,25 @@ int contarPalabra(vector<string> texto, string &palabra){
 }
 
 
+
+//Justificar texto
+
+
+
+
+void izquierdaTexto(vector<string> &texto, int &limite){
+    for(int i = 0; i < texto.size(); i++){
+        limpiarCadena(texto[i]);
+    }
+}
+void derechaTexto(vector<string> &texto, int &limite){
+    string relleno = "";
+    for(int i = 0; i < texto.size(); i++){
+        limpiarCadena(texto[i]);
+        for(int j = 0; j < limite - texto[i].length(); j++){
+            relleno += ' ';
+        }
+        texto[i] = relleno + texto[i];
+        relleno = "";
+    }
+}
