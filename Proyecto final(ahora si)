@@ -107,3 +107,52 @@ void derechaTexto(vector<string> &texto, int &limite){
         relleno = "";
     }
 }
+
+
+
+// menu 
+
+
+int main() {
+    vector<string> archivo;
+    string nombreArchivo;
+    string lineaTexto;
+    string palabra, palabra2;
+    string copia;
+    //string archivo = "";
+    int tamMax = 0;
+    ifstream inFile;
+    int opcion;
+    cout << "Ingrese el nombre del archivo a leer: "<<endl;
+    cin>> nombreArchivo;
+    //nombreArchivo = "   ";
+    //limpiarCadena(nombreArchivo);
+    //cout<<nombreArchivo;
+    inFile.open("C:\\Users\\Ricardo\\CLionProjects\\editor\\ejemplo.txt", ios::in);
+    if (!inFile) {
+        cout << "El archivo no pudo ser encontrado ";
+        exit(1);
+    }
+    while (!inFile.eof()) {
+        getline(inFile, lineaTexto);
+        //limpiarCadena(lineaTexto);
+        tamMax = max(tamMax, int(lineaTexto.length()));
+        archivo.push_back(lineaTexto);
+    }
+    limpiarTexto(archivo);
+    mostrarTexto(archivo);
+    //archivo = string(archivo.begin(), archivo.end()-1);
+    cout << "Menu\n"
+            "1. Leer archivo\n"
+            "2. Guardar archivo. Debe grabar un archivo de texto con el formato indicado por ejemplo justificado.\n"
+            "3. Debe justificar\n"
+            "4. Alinear el texto a la izquierda\n"
+            "5. Alinear el texto a la derecha\n"
+            "6. Centrar el texto\n"
+            "7. Buscar una palabra\n"
+            "8. Reemplazar una palabra\n"
+            "9. Contar la cantidad de veces que aparece una palabra\n"
+            "10. Encriptar el archivo\n"
+            "11. Desencriptar el archivo\n";
+    cin>>opcion;
+    switch(opcion) {
