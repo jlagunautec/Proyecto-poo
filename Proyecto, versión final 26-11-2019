@@ -36,7 +36,7 @@ int reemplazarPalabra(vector<string> &texto, string &palabra, string &reemplazo)
                     break;
             }
             if(valida == palabra.length()) {
-                
+
                 inicio = string(texto[i].begin(), texto[i].end() - texto[i].length() + j);
                 final = string(texto[i].begin() + j + palabra.length(), texto[i].end());
                 texto[i] = inicio + reemplazo + final;
@@ -113,7 +113,7 @@ void justificarTexto(vector<string> &texto, int &limite){
         disEspacio = 0;
         limpiarCadena(texto[i]);
         relleno = "";
-      
+
     }
 }
 
@@ -173,7 +173,6 @@ void diccionarioTexto(vector<string> texto){
             if(int(toupper(texto[i][j])) < 65 || int(toupper(texto[i][j]) > 90) || j + 1 == texto[i].length()){
                 string temp;
                 temp = string(texto[i].begin() + mark, texto[i].end() - texto[i].length() + j + 1);
-                //limpiarCadena(temp);
                 diccionario[i].push_back(temp);
                 cout<<temp<<"x"<<endl;
                 mark = j;
@@ -184,7 +183,6 @@ void diccionarioTexto(vector<string> texto){
 }
 
 void limpiarCadena(string &cadena){
-    //cout<<cadena<<endl;
     string line = "";
     while(cadena[0] == ' '){
         cadena = string(cadena.begin()+1, cadena.end());
@@ -219,7 +217,7 @@ void mostrarTexto(vector<string> &texto){
 
 void guardarArchivo(vector<string> &texto, string &nombre){
     ofstream arch;
-    arch.open("C:\\Users\\owena\\CLionProjects\\editor\\"+nombre+".txt", ios::out);//Aqui reemplacen la ruta del archivo de su proyecto
+    arch.open("C:\\Users\\lagun\\OneDrive\\Escritorio\\"+nombre+".txt", ios::out);
     if(arch.fail()){
         cout<<"Hubo un problema al guardar el archivo :("<<endl;
     }
@@ -233,14 +231,14 @@ void leerArchivo(vector<string> &archivo, string &nombre,int &tamMax){
     tamMax = 0;
     ifstream inFile;
     string lineaTexto;
-    inFile.open("C:\\Users\\owena\\CLionProjects\\editor\\"+nombre+".txt", ios::in); //Aqui reemplacen la ruta del archivo de su proyecto
+    inFile.open("C:\\Users\\lagun\\OneDrive\\Escritorio\\"+nombre+".txt", ios::in);
     if (!inFile) {
         cout << "El archivo no pudo ser encontrado :(";
         exit(1);
     }
     while (!inFile.eof()) {
         getline(inFile, lineaTexto);
-        //limpiarCadena(lineaTexto);
+
         tamMax = max(tamMax, int(lineaTexto.length()));
         archivo.push_back(lineaTexto);
     }
@@ -268,6 +266,7 @@ int main() {
                 "9. Contar la cantidad de veces que aparece una palabra\n"
                 "10. Encriptar el archivo\n"
                 "11. Desencriptar el archivo\n"
+                "12. Terminar programa\n"
                 "Escoja su opcion:\n";
         cin>>opcion;
         switch(opcion) {
@@ -324,6 +323,8 @@ int main() {
                 desencriptarTexto(archivo);
                 mostrarTexto(archivo);
                 break;
+            case 12:
+                return 0;
         }
 
     }
