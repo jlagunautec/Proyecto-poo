@@ -1,0 +1,331 @@
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+#include <string>
+#include <vector>
+#include <stdlib.h>
+
+using namespace std;
+
+void mostrarTexto(vector<string> &texto);
+void justificarTexto(vector<string> &texto, int &limite);
+void izquierdaTexto(vector<string> &texto, int &limite);
+void derechaTexto(vector<string> &texto, int &limite);
+void centrarTexto(vector<string> &texto, int &limite);
+void buscarPalabra(vector<string> texto, string &palabra);
+int contarPalabra(vector<string> texto, string &palabra);
+int reemplazarPalabra(vector<string> &texto, string &palabra, string &reemplazo);
+void encriptarTexto(vector<string> &texto);
+void desencriptarTexto(vector<string> &texto);
+void limpiarTexto(vector<string> &texto);
+void limpiarCadena(string &cadena);
+void guardarArchivo(vector<string> &texto, string &nombre);
+void leerArchivo(vector<string> &archivo, string &nombre,int &tamMax);
+
+int reemplazarPalabra(vector<string> &texto, string &palabra, string &reemplazo){
+    int valida;
+    string inicio, final;
+    for(int i = 0; i < texto.size(); i++){
+        limpiarCadena(texto[i]);
+        for(int j = 0; j <texto[i].length() - palabra.length(); j++){
+            valida = 0;
+            for(int k = 0; k < palabra.length(); k++){
+                if(toupper(palabra[k]) == toupper(texto[i][j+k]))
+                    valida++;
+                else
+                    break;
+            }
+            if(valida == palabra.length()) {
+                
+                inicio = string(texto[i].begin(), texto[i].end() - texto[i].length() + j);
+                final = string(texto[i].begin() + j + palabra.length(), texto[i].end());
+                texto[i] = inicio + reemplazo + final;
+            }
+        }
+    }
+}
+
+void buscarPalabra(vector<string> texto, string &palabra){
+    int valida;
+    for(int i = 0; i < texto.size(); i++){
+        limpiarCadena(texto[i]);
+        for(int j = 0; j <texto[i].length() - palabra.length(); j++){
+            valida = 0;
+            for(int k = 0; k < palabra.length(); k++){
+                if(toupper(palabra[k]) == toupper(texto[i][j+k]))
+                    valida++;
+                else
+                    break;
+            }
+            if(valida == palabra.length()) {
+                for (int p = 0; p < valida; p++) {
+                    texto[i][j+p] = '*';
+                }
+            }
+        }
+    }
+    mostrarTexto(texto);
+}
+
+int contarPalabra(vector<string> texto, string &palabra){
+    int valida, contador = 0;
+    for(int i = 0; i < texto.size(); i++){
+        limpiarCadena(texto[i]);
+        for(int j = 0; j <texto[i].length() - palabra.length(); j++){
+            valida = 0;
+            for(int k = 0; k < palabra.length(); k++){
+                if(toupper(palabra[k]) == toupper(texto[i][j+k]))
+                    valida++;
+                else
+                    break;
+            }
+            if(valida == palabra.length())
+                contador++;
+        }
+    }
+    return contador;
+}
+
+void justificarTexto(vector<string> &texto, int &limite){
+    int cantEspacios;
+    int tamEspacio;
+    int disEspacio;
+    string newLinea;
+    string palabra;
+    string relleno = "";
+    vector<string> lista;
+    for(int i = 0; i < texto.size(); i++){
+        limpiarCadena(texto[i]);
+        texto[i] += ' ';
+        cantEspacios = 0;
+        for(int j = 0; j < texto[i].length(); j++){
+            if(texto[i][j] == ' ' ){
+                cantEspacios++;
+                cout << palabra<<endl;
+                lista.push_back(palabra);
+                palabra = "";
+            }
+            else {
+                palabra += texto[i][j];
+            }
+        }
+        cantEspacios--;
+        disEspacio = 0;
+        limpiarCadena(texto[i]);
+        relleno = "";
+      
+    }
+}
+
+void izquierdaTexto(vector<string> &texto, int &limite){
+    for(int i = 0; i < texto.size(); i++){
+        limpiarCadena(texto[i]);
+    }
+}
+void derechaTexto(vector<string> &texto, int &limite){
+    string relleno = "";
+    for(int i = 0; i < texto.size(); i++){
+        limpiarCadena(texto[i]);
+        for(int j = 0; j < limite - texto[i].length(); j++){
+            relleno += ' ';
+        }
+        texto[i] = relleno + texto[i];
+        relleno = "";
+    }
+}
+void centrarTexto(vector<string> &texto, int &limite){
+    string relleno = "";
+    for(int i = 0; i < texto.size(); i++){
+        limpiarCadena(texto[i]);
+        for(int j = 0; j < (limite - texto[i].length())/2; j++){
+            relleno += ' ';
+        }
+        texto[i] = relleno + texto[i];
+        relleno = "";
+    }
+}
+
+void encriptarTexto(vector<string> &texto){
+    for(int i = 0; i < texto.size(); i++){
+        for(int j = 0; j < texto[i].length(); j++){
+            texto[i][j] = char(int(texto[i][j]) + 1);
+        }
+    }
+}
+
+void desencriptarTexto(vector<string> &texto){
+    for(int i = 0; i < texto.size(); i++){
+        for(int j = 0; j < texto[i].length(); j++){
+            texto[i][j] = char(int(texto[i][j]) - 1);
+        }
+    }
+}
+
+void diccionarioTexto(vector<string> texto){
+    vector<vector<string>> diccionario;
+    //limpiarTexto(texto);
+    int mark;
+    for(int i = 0; i < texto.size(); i++){
+        mark = 0;
+        diccionario.push_back(vector<string>());
+        limpiarCadena(texto[i]);
+        for(int j = 0; j < texto[i].length(); j++){
+            if(int(toupper(texto[i][j])) < 65 || int(toupper(texto[i][j]) > 90) || j + 1 == texto[i].length()){
+                string temp;
+                temp = string(texto[i].begin() + mark, texto[i].end() - texto[i].length() + j + 1);
+                //limpiarCadena(temp);
+                diccionario[i].push_back(temp);
+                cout<<temp<<"x"<<endl;
+                mark = j;
+            }
+        }
+
+    }
+}
+
+void limpiarCadena(string &cadena){
+    //cout<<cadena<<endl;
+    string line = "";
+    while(cadena[0] == ' '){
+        cadena = string(cadena.begin()+1, cadena.end());
+    }
+    while(cadena[cadena.length()-1] == ' '){
+        cadena = string(cadena.begin(), cadena.end()-1);
+    }
+    for(int i = 0; i < cadena.length(); i++) {
+        line += cadena[i];
+        if(cadena[i] == ' '){
+            while (i + 1 < cadena.length() && cadena[i + 1] == ' ') {
+                i++;
+            }
+        }
+    }
+    cadena = line;
+}
+
+void limpiarTexto(vector<string> &texto){
+    for(int i = 0; i < texto.size(); i++){
+        limpiarCadena(texto[i]);
+    }
+}
+
+void mostrarTexto(vector<string> &texto){
+    cout<<"Inicio-----------------------------------------------"<<endl;
+    for(int i = 0; i < texto.size(); i++){
+        cout<<texto[i]<<endl;
+    }
+    cout<<"Fin--------------------------------------------------"<<endl;
+}
+
+void guardarArchivo(vector<string> &texto, string &nombre){
+    ofstream arch;
+    arch.open("C:\\Users\\owena\\CLionProjects\\editor\\"+nombre+".txt", ios::out);//Aqui reemplacen la ruta del archivo de su proyecto
+    if(arch.fail()){
+        cout<<"Hubo un problema al guardar el archivo :("<<endl;
+    }
+    for(int i = 0; i < texto.size(); i++) {
+        arch<<texto[i]<<endl;
+    }
+    arch.close();
+}
+
+void leerArchivo(vector<string> &archivo, string &nombre,int &tamMax){
+    tamMax = 0;
+    ifstream inFile;
+    string lineaTexto;
+    inFile.open("C:\\Users\\owena\\CLionProjects\\editor\\"+nombre+".txt", ios::in); //Aqui reemplacen la ruta del archivo de su proyecto
+    if (!inFile) {
+        cout << "El archivo no pudo ser encontrado :(";
+        exit(1);
+    }
+    while (!inFile.eof()) {
+        getline(inFile, lineaTexto);
+        //limpiarCadena(lineaTexto);
+        tamMax = max(tamMax, int(lineaTexto.length()));
+        archivo.push_back(lineaTexto);
+    }
+}
+
+int main() {
+    vector<string> archivo;
+    string nombreArchivo;
+    string lineaTexto;
+    string palabra, palabra2;
+    string copia;
+    int tamMax = 0;
+    int opcion;
+
+    while(true){
+        cout << "Menu\n"
+                "1. Leer archivo\n"
+                "2. Guardar archivo\n"
+                "3. Debe justificar\n"
+                "4. Alinear el texto a la izquierda\n"
+                "5. Alinear el texto a la derecha\n"
+                "6. Centrar el texto\n"
+                "7. Buscar una palabra\n"
+                "8. Reemplazar una palabra\n"
+                "9. Contar la cantidad de veces que aparece una palabra\n"
+                "10. Encriptar el archivo\n"
+                "11. Desencriptar el archivo\n"
+                "Escoja su opcion:\n";
+        cin>>opcion;
+        switch(opcion) {
+            case 1:
+                cout << "Ingrese el nombre del archivo:" << endl;
+                cin >> palabra;
+                leerArchivo(archivo, palabra, tamMax);
+                mostrarTexto(archivo);
+                break;
+            case 2:
+                cout << "Guardar como: " << endl;
+                cin >> palabra;
+                guardarArchivo(archivo, palabra);
+                break;
+            case 3:
+                justificarTexto(archivo, tamMax);
+                mostrarTexto(archivo);
+                break;
+            case 4:
+                izquierdaTexto(archivo, tamMax);
+                mostrarTexto(archivo);
+                break;
+            case 5:
+                derechaTexto(archivo, tamMax);
+                mostrarTexto(archivo);
+                break;
+            case 6:
+                centrarTexto(archivo, tamMax);
+                mostrarTexto(archivo);
+                break;
+            case 7:
+                cout << "Ingrese la palabra a buscar:" << endl;
+                cin >> palabra;
+                buscarPalabra(archivo, palabra);
+                break;
+            case 8:
+                cout << "Ingrese la palabra a reemplazar:" << endl;
+                cin >> palabra;
+                cout << "Ingrese su reemplazo:" << endl;
+                cin >> palabra2;
+                reemplazarPalabra(archivo, palabra, palabra2);
+                mostrarTexto(archivo);
+                break;
+            case 9:
+                cout << "Ingrese la palabra:" << endl;
+                cin >> palabra;
+                cout << "La palabra tiene " << contarPalabra(archivo, palabra) << " coincidencias en el texto" << endl;
+                break;
+            case 10:
+                encriptarTexto(archivo);
+                mostrarTexto(archivo);
+                break;
+            case 11:
+                desencriptarTexto(archivo);
+                mostrarTexto(archivo);
+                break;
+        }
+
+    }
+
+}
